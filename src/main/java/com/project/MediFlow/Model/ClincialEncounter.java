@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
+@Entity
 public class ClincialEncounter {
 
     @Id

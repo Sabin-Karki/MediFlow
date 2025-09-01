@@ -7,6 +7,7 @@ import lombok.Data;
 //what could prescription even have
 // id ofcourse,  name ? prescriptionName ? notes ? how much to take and stuff
 @Data
+@Entity
 public class Prescription {
 
     @Id

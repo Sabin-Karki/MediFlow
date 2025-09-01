@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
+@Entity
 public class LabResult {
 
     @Id

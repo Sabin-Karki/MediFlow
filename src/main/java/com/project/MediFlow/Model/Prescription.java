@@ -1,13 +1,17 @@
 package com.project.MediFlow.Model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 //what could prescription even have
 // id ofcourse,  name ? prescriptionName ? notes ? how much to take and stuff
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Prescription {
 
     @Id

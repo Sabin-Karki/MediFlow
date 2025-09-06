@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -16,7 +18,7 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long id;
 
-    private  Long date;
+    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "encounterId")

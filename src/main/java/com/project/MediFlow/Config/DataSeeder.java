@@ -73,6 +73,8 @@ public class DataSeeder implements CommandLineRunner {
 
 
 
+        }else{
+            System.out.println("Data already seeded");
         }
         }
 

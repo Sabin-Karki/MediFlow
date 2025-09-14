@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 public class RawDataEvent {
 
@@ -18,20 +17,23 @@ public class RawDataEvent {
     private  Long id;
 
     private  String originalFileName;
+    private String storagePath;
 
-    private LocalDateTime recievedTimeStamp;
-    private  LocalDateTime completeddTimeStamp;  // completed meaning
+    private LocalDateTime receivedTimeStamp;
+    private  LocalDateTime completedTimeStamp;  // completed meaning
 
+
+    public RawDataEvent(String originalFileName,String storagePath,LocalDateTime receivedTimeStamp,JobStatus status){
+        this.originalFileName = originalFileName;
+        this.storagePath = storagePath;
+        this.receivedTimeStamp = receivedTimeStamp;
+        this.status = status;
+        this.completedTimeStamp=null;
+    }
 
     @Enumerated(EnumType.STRING)
     private JobStatus status;
 
 
-}
 
-enum JobStatus{
-    RECEIVED,
-    PROCESSING,
-    COMPLETED,
-    FAILED
 }

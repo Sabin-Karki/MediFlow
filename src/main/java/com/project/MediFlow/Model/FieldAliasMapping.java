@@ -16,11 +16,17 @@ public class FieldAliasMapping {
     private Long id;
 
     @Column(name = "entity_type",nullable = false)
-    String entityType;
+   private  String entityType;
 
     @Column(name = "alias_field",nullable = false)
     private String aliasField;
 
     @Column(name = "mappedField")
     private String mappedField;
+
+    public FieldAliasMapping(String entityType,String aliasField,String mappedField){
+        this.entityType=entityType;
+        this.aliasField=aliasField;
+        this.mappedField=mappedField;
+    }
 }

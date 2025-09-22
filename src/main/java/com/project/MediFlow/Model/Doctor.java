@@ -12,6 +12,10 @@ public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(unique = true)
+    private  Long externalId;
+
     private  String firstName;
     private String lastName;
     private LocalDate DOB;

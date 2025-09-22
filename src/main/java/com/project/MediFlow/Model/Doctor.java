@@ -14,7 +14,7 @@ public class Doctor {
     private Long id;
 
     @Column(unique = true)
-    private  Long externalId;
+    private  String externalId;
 
     private  String firstName;
     private String lastName;

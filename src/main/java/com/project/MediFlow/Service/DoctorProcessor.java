@@ -155,7 +155,7 @@ public class DoctorProcessor implements  FileProcessor{
 
         }
         if(dto.getDOB()==null||dto.getDOB().isEmpty()){
-            throw new IllegalArgumentException("Date of Birth is missing");
+            throw new IllegalArgumentException("Date Of Birth is missing");
         }
     }
 }

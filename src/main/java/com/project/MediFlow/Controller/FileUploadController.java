@@ -2,6 +2,7 @@ package com.project.MediFlow.Controller;
 
 import com.project.MediFlow.Model.RawDataEvent;
 import com.project.MediFlow.Service.PipeLineService;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,12 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/file/upload")
 public class FileUploadController {
 //    private final PipeLineService ;
+
     private PipeLineService pipeLineService;
+
+    public FileUploadController(PipeLineService pipeLineService){
+        this.pipeLineService=pipeLineService;
+    }
 
     @PostMapping("/Patient")
     public ResponseEntity<String> uploadPatientFile(@RequestParam(name = "file")MultipartFile file ,@RequestParam String fileType){
@@ -27,8 +33,19 @@ public class FileUploadController {
             return ResponseEntity.badRequest().body("File is empty");
         }else {
             RawDataEvent rawDataEvent = pipeLineService.saveRawDataEvent(file,fileType);
-            return ResponseEntity.status(HttpStatus.OK).body("File uploaded successfully");
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("File uploaded successfully");
 
+        }
+    }
+
+    @PostMapping("/Doctor")
+    public ResponseEntity<String> uploadDoctorFile(@RequestParam(name = "file") MultipartFile file, @RequestParam String fileType){
+        String fileContent = file.getOriginalFilename();
+        if(fileContent==null || !fileContent.endsWith("csv")){
+            return ResponseEntity.badRequest().body("File is empty");
+        }else{
+            RawDataEvent rawDataEvent = pipeLineService.saveRawDataEvent(file,fileType);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("File uploaded successfully");
         }
     }
 }

@@ -22,11 +22,11 @@ import java.util.stream.Collectors;
 @Service
 public class DoctorProcessor implements  FileProcessor{
 // dictionary which has alias field and entity field and entityType fname->firstName->Doctor
-    private FieldAliasMapping fieldAliasMapping;
+    private FieldAliasMappingRepository fieldAliasMappingRepository;
     private DoctorRepository doctorRepository;
 
-    public DoctorProcessor(FieldAliasMapping fieldAliasMapping, DoctorRepository doctorRepository){
-        this.fieldAliasMapping = fieldAliasMapping;
+    public DoctorProcessor(FieldAliasMappingRepository fieldAliasMappingRepository, DoctorRepository doctorRepository){
+        this.fieldAliasMappingRepository = fieldAliasMappingRepository;
         this.doctorRepository=doctorRepository;
     }
 

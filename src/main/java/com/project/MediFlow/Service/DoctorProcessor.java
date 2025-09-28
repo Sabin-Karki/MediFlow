@@ -69,8 +69,7 @@ public class DoctorProcessor implements  FileProcessor{
                     DoctorDTO dto = mapDatatoDto(data,columnIndextoField);
                     validateDTO(dto);
                     //convert date to localdate
-                    LocalDate dob = LocalDate.parse(dto.getDOB());
-                    Boolean doctorExists = doctorRepository.existsByFirstNameAndLastName(dto.getFirstName(),dto.getLastName(),dob);
+                    Boolean doctorExists = doctorRepository.existsByFirstNameAndLastName(dto.getFirstName(),dto.getLastName(),dto.getDOB());
                     if(!doctorExists){
                         continue; // skip row 1
                     }
@@ -79,7 +78,7 @@ public class DoctorProcessor implements  FileProcessor{
                     newDoctor.setExternalId(dto.getExternalId());
                     newDoctor.setFirstName(dto.getFirstName());
                     newDoctor.setLastName(dto.getLastName());
-                    newDoctor.setDOB(dob);
+                    newDoctor.setDOB(dto.getDOB());
 
                     doctorRepository.save(newDoctor);
 
@@ -136,7 +135,7 @@ public class DoctorProcessor implements  FileProcessor{
                         break;
 
                     case "DOB":
-                        dto.setDOB(value);
+                        dto.setDOB(LocalDate.parse(value));
                 }
             }
         }
@@ -154,7 +153,7 @@ public class DoctorProcessor implements  FileProcessor{
             throw new IllegalArgumentException("LastName is missing ");
 
         }
-        if(dto.getDOB()==null||dto.getDOB().isEmpty()){
+        if(dto.getDOB()==null){
             throw new IllegalArgumentException("Date Of Birth is missing");
         }
     }

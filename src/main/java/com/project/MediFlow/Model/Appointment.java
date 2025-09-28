@@ -18,7 +18,10 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long id;
 
+    @Column(unique=true)
+    private  String externalId;
     private LocalDate date;
+
 
     @ManyToOne
     @JoinColumn(name = "encounterId")

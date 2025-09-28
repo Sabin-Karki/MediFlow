@@ -67,8 +67,7 @@ public class PatientProcessor implements  FileProcessor{
                     PatientDTO dto = mapDatatoDTO(data,columnIndextoFieldName);
                     //validate the dto
                     validateDTO(dto);
-                    LocalDate dob = LocalDate.parse(dto.getDOB()); // parsing the string to date
-                    Boolean patientExists  = patientRepository.existsByFirstAndLastName(dto.getFirstName(),dto.getLastName(),dob);
+                    Boolean patientExists  = patientRepository.existsByFirstAndLastName(dto.getFirstName(),dto.getLastName(),dto.getDOB());
                     if (patientExists){
                         System.err.println(" Duplicate Data Found  in Row " + rowNumber);
                         continue; //skip this row
@@ -79,7 +78,7 @@ public class PatientProcessor implements  FileProcessor{
                     newPatient.setExternalId(dto.getExternalId());
                     newPatient.setFirstName(dto.getFirstName());
                     newPatient.setLastName(dto.getLastName());
-                    newPatient.setDOB(dob);
+                    newPatient.setDOB(dto.getDOB());
                     patientRepository.save(newPatient);
 
                 }catch (Exception e){
@@ -128,7 +127,7 @@ public class PatientProcessor implements  FileProcessor{
                       dto.setLastName(value);
                       break;
                   case "DOB":
-                      dto.setDOB(value);
+                      dto.setDOB(LocalDate.parse(value));
                       break;
               }
           }
@@ -144,7 +143,7 @@ public class PatientProcessor implements  FileProcessor{
         if (dto.getLastName() == null || dto.getLastName().isEmpty()) {
             throw new IllegalArgumentException("Last name is missing or empty.");
         }
-        if (dto.getDOB() == null || dto.getDOB().isEmpty()) {
+        if (dto.getDOB() == null) {
             throw new IllegalArgumentException("Date of birth is missing or empty.");
         }
         // You could add more complex validation here, like checking date format

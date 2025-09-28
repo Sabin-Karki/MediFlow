@@ -18,14 +18,15 @@ public class RawDataEvent {
 
     private  String originalFileName;
     private String storagePath;
+    private String fileType;
 
     private LocalDateTime receivedTimeStamp;
     private  LocalDateTime completedTimeStamp;  // completed meaning
 
-
-    public RawDataEvent(String originalFileName,String storagePath,LocalDateTime receivedTimeStamp,JobStatus status){
+    public RawDataEvent(String originalFileName,String storagePath,String fileType,LocalDateTime receivedTimeStamp,JobStatus status){
         this.originalFileName = originalFileName;
         this.storagePath = storagePath;
+        this.fileType=fileType;
         this.receivedTimeStamp = receivedTimeStamp;
         this.status = status;
         this.completedTimeStamp=null;

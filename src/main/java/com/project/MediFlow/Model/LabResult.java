@@ -15,6 +15,9 @@ public class LabResult {
     @GeneratedValue(strategy = GenerationType.AUTO )
     private  Long id;
 
+    @Column(unique=true)
+    private String externalId;
+
     private String test;
     private  String result;
     private String unit ;

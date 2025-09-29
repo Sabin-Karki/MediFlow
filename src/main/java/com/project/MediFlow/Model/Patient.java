@@ -22,7 +22,7 @@ public class Patient {
     private LocalDate DOB;
 
     @OneToMany(mappedBy = "patient")
-    private List<ClincialEncounter> encountersList;
+    private List<ClinicalEncounter> encountersList;
 
 
 }

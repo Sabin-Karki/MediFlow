@@ -25,5 +25,5 @@ public class Appointment {
 
     @ManyToOne
     @JoinColumn(name = "encounterId")
-    private  ClincialEncounter encounter;
+    private ClinicalEncounter encounter;
 }

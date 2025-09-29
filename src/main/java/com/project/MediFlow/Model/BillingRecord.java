@@ -15,9 +15,11 @@ public class BillingRecord {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long id;
 
+    @Column(unique = true)
+    private String externalId;
     private  Long amount;
 
     @ManyToOne
     @JoinColumn(name = "encounterId")
-    private  ClincialEncounter encounter;
+    private ClinicalEncounter encounter;
 }

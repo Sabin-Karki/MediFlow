@@ -25,7 +25,7 @@ public class LabResult {
     // create a encounter fk here / / so this has to be the many part in manytoone relationship
     @ManyToOne
     @JoinColumn(name = "encounterId")
-    private ClincialEncounter encounter;
+    private ClinicalEncounter encounter;
 
 
 }

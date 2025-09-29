@@ -18,10 +18,13 @@ public class Prescription {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long id;
 
+    @Column(unique = true)
+    private String externalId;
+
     private String medicationName;
     private  String notes;
 
     @ManyToOne
     @JoinColumn(name="encounterId")
-    private  ClincialEncounter encounter;
+    private ClinicalEncounter encounter;
 }

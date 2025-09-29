@@ -70,7 +70,7 @@ public class DoctorProcessor implements  FileProcessor{
                     validateDTO(dto);
                     //convert date to localdate
                     Boolean doctorExists = doctorRepository.existsByFirstNameAndLastName(dto.getFirstName(),dto.getLastName(),dto.getDOB());
-                    if(!doctorExists){
+                    if(doctorExists){
                         continue; // skip row 1
                     }
 
@@ -104,7 +104,7 @@ public class DoctorProcessor implements  FileProcessor{
     //return type is map ofcoruse
     private Map<String,String> getAliasAndEntityField(String entityType){
         //return the List fieldaliasmapping of type Doctor and make mapping point to the list
-        List<FieldAliasMapping> mapping = FieldAliasMappingRepository.findByEntityType(entityType);
+        List<FieldAliasMapping> mapping = fieldAliasMappingRepository.findByEntityType(entityType);
         //now turn them to map with key and value pair of string and string and stored in the map collection,,the alias field and entity field is then stored
         return mapping.stream()
                 .collect(Collectors.toMap(FieldAliasMapping::getAliasField,

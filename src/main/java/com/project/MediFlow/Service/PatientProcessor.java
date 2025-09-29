@@ -97,7 +97,7 @@ public class PatientProcessor implements  FileProcessor{
     }
 
     private Map<String,String > getAliasMappingForEntityType(String entityType){
-        List<FieldAliasMapping> mapping = FieldAliasMappingRepository.findByEntityType(entityType);
+        List<FieldAliasMapping> mapping = fieldAliasMappingRepository.findByEntityType(entityType);
         return mapping.stream()
                 .collect(Collectors.toMap(
                 FieldAliasMapping::getAliasField,

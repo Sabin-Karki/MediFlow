@@ -67,7 +67,7 @@ public class PatientProcessor implements  FileProcessor{
                     PatientDTO dto = mapDatatoDTO(data,columnIndextoFieldName);
                     //validate the dto
                     validateDTO(dto);
-                    Boolean patientExists  = patientRepository.existsByFirstAndLastName(dto.getFirstName(),dto.getLastName(),dto.getDOB());
+                    Boolean patientExists  = patientRepository.existsByFirstNameAndLastName(dto.getFirstName(),dto.getLastName());
                     if (patientExists){
                         System.err.println(" Duplicate Data Found  in Row " + rowNumber);
                         continue; //skip this row

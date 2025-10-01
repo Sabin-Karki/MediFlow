@@ -69,7 +69,7 @@ public class DoctorProcessor implements  FileProcessor{
                     DoctorDTO dto = mapDatatoDto(data,columnIndextoField);
                     validateDTO(dto);
                     //convert date to localdate
-                    Boolean doctorExists = doctorRepository.existsByFirstNameAndLastName(dto.getFirstName(),dto.getLastName(),dto.getDOB());
+                    Boolean doctorExists = doctorRepository.existsByFirstNameAndLastName(dto.getFirstName(),dto.getLastName());
                     if(doctorExists){
                         continue; // skip row 1
                     }

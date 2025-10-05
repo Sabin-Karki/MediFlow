@@ -23,17 +23,17 @@ public class RawDataEvent {
     private LocalDateTime receivedTimeStamp;
     private  LocalDateTime completedTimeStamp;  // completed meaning
 
-    public RawDataEvent(String originalFileName,String storagePath,String fileType,LocalDateTime receivedTimeStamp,JobStatus status){
+    public RawDataEvent(String originalFileName,String storagePath,String fileType,LocalDateTime receivedTimeStamp,JobStatus jobStatus){
         this.originalFileName = originalFileName;
         this.storagePath = storagePath;
         this.fileType=fileType;
         this.receivedTimeStamp = receivedTimeStamp;
-        this.status = status;
+        this.jobStatus = jobStatus;
         this.completedTimeStamp=null;
     }
 
     @Enumerated(EnumType.STRING)
-    private JobStatus status;
+    private JobStatus jobStatus;
 
 
 

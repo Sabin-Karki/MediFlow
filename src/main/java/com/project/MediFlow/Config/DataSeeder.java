@@ -53,6 +53,7 @@ public class DataSeeder implements CommandLineRunner {
             fieldAliasMappingRepository.save(new FieldAliasMapping("BillingRecord", "charge", "amount"));
             fieldAliasMappingRepository.save(new FieldAliasMapping("BillingRecord", "patientid", "patientExternalId"));
             fieldAliasMappingRepository.save(new FieldAliasMapping("BillingRecord", "externalid", "externalId"));
+            fieldAliasMappingRepository.save(new FieldAliasMapping("BillingRecord","billingdate","date"));
 
             // LabResult Alias
             fieldAliasMappingRepository.save(new FieldAliasMapping("LabResult", "testname", "testName"));
@@ -64,6 +65,8 @@ public class DataSeeder implements CommandLineRunner {
             fieldAliasMappingRepository.save(new FieldAliasMapping("LabResult", "patientid", "patientExternalId"));
             fieldAliasMappingRepository.save(new FieldAliasMapping("LabResult", "doctorid", "doctorExternalId"));
             fieldAliasMappingRepository.save(new FieldAliasMapping("LabResult", "externalid", "externalId"));
+            fieldAliasMappingRepository.save(new FieldAliasMapping("LabResult","testdate","testDate"));
+            fieldAliasMappingRepository.save(new FieldAliasMapping("LabResult","date","testDate"));
 
             // Prescription Alias
             fieldAliasMappingRepository.save(new FieldAliasMapping("Prescription", "medicationname", "medicationName"));
@@ -74,6 +77,8 @@ public class DataSeeder implements CommandLineRunner {
             fieldAliasMappingRepository.save(new FieldAliasMapping("Prescription", "patientid", "patientExternalId"));
             fieldAliasMappingRepository.save(new FieldAliasMapping("Prescription", "doctorid", "doctorExternalId"));
             fieldAliasMappingRepository.save(new FieldAliasMapping("Prescription", "externalid", "externalId"));
+            fieldAliasMappingRepository.save(new FieldAliasMapping("Prescription","date","date"));
+
 
         } else {
             System.out.println("Data already seeded");

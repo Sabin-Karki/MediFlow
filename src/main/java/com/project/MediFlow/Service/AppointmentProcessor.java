@@ -76,13 +76,12 @@ public class AppointmentProcessor implements  FileProcessor{
 
                     Doctor doctor = doctorRepository.findByExternalId(dto.getDoctorExternalId());
                     Patient patient = patientRepository.findByExternalId(dto.getPatientExternalId());
-                    LocalDateTime localDateTime =dto.getAppointmentDate().atStartOfDay();
-
+                    LocalDate date = dto.getAppointmentDate();
                     if(doctor==null || patient==null){
                         throw new IllegalArgumentException("Doctor or Patient not found for the given external id");
 
                     }
-                    Optional<ClinicalEncounter> existingEncounter = clinicalEncounterRepository.findByDoctorAndPatientAndLocalDateTime(doctor,patient,localDateTime);
+                    Optional<ClinicalEncounter> existingEncounter = clinicalEncounterRepository.findByDoctorAndPatientAndDate(doctor,patient,date);
 
                     ClinicalEncounter encounterToUse;
                     if(existingEncounter.isPresent()){
@@ -93,7 +92,7 @@ public class AppointmentProcessor implements  FileProcessor{
                         ClinicalEncounter encounter = new ClinicalEncounter();
                         encounter.setDoctor(doctor);
                         encounter.setPatient(patient);
-                        encounter.setLocalDateTime(localDateTime);
+                        encounter.setDate(date);
                         encounterToUse = clinicalEncounterRepository.save(encounter);
 
                     }
@@ -143,7 +142,7 @@ public class AppointmentProcessor implements  FileProcessor{
                     case "patientExternalId":
                         dto.setPatientExternalId(value);
                         break;
-                    case "appointmentDate":
+                    case "date":
                         dto.setAppointmentDate(LocalDate.parse(value));
                        break;
                     default:

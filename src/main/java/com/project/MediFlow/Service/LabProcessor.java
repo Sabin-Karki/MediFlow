@@ -3,6 +3,7 @@ package com.project.MediFlow.Service;
 import com.project.MediFlow.DTO.LabResultDTO;
 import com.project.MediFlow.Model.*;
 import com.project.MediFlow.Repository.*;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -34,6 +35,7 @@ public class LabProcessor implements  FileProcessor {
     }
 
     @Override
+    @Transactional
     public void process(RawDataEvent rawDataEvent){
       String filePath = rawDataEvent.getStoragePath();
         Path path = Paths.get(filePath);
@@ -144,32 +146,36 @@ public class LabProcessor implements  FileProcessor {
                         break;
                     case "testDate":
                         labResultDTO.setTestDate(LocalDate.parse(value));
+                        break;
                     default :
-                        throw new IllegalArgumentException();
+                        // It's better to log or ignore unknown fields rather than throwing an exception
+                        // that stops the whole process.
+                        System.out.println("Ignoring unknown field: " + fieldName);
+                        break;
 
                 }
             }
         }
         return labResultDTO;
     }
-    private void validateDTO(LabResultDTO labResultDTO){
+    private void validateDTO(LabResultDTO labResultDTO) throws IllegalArgumentException {
       if(labResultDTO.getExternalId()==null||labResultDTO.getExternalId().isEmpty()){
-          System.err.println("External ID is missing");
+          throw new IllegalArgumentException("External ID is missing");
       }
       if(labResultDTO.getPatientExternalId()==null||labResultDTO.getPatientExternalId().isEmpty()){
-          System.err.println("Patient id is missing");
+          throw new IllegalArgumentException("Patient id is missing");
       }
       if(labResultDTO.getDoctorExternalId()==null||labResultDTO.getDoctorExternalId().isEmpty()){
-          System.err.println("Doctor id is missing");
+          throw new IllegalArgumentException("Doctor id is missing");
       }
       if(labResultDTO.getTestName()==null||labResultDTO.getTestName().isEmpty()){
-          System.err.println("Test is missing");
+          throw new IllegalArgumentException("Test is missing");
       }
       if(labResultDTO.getResultValue()==null||labResultDTO.getResultValue().isEmpty()){
-          System.err.println("Result is empty ");
+          throw new IllegalArgumentException("Result is empty ");
       }
       if(labResultDTO.getUnit()==null||labResultDTO.getUnit().isEmpty()){
-          System.err.println("Unit is missing " );
+          throw new IllegalArgumentException("Unit is missing " );
       }
     }
 }

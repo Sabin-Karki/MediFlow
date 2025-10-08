@@ -121,7 +121,7 @@ private BillingRecordDTO mapDataToDTO(String[] data, Map<Integer,String > plan){
                 case "amount":
                     dto.setAmount(value);
                     break;
-                case "billingDate":
+                case "date":
                     dto.setBillingDate(LocalDate.parse(value));
                     break;
                 default:

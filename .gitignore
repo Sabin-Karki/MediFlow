@@ -33,4 +33,7 @@ build/
 .vscode/
 **/application.properties
 **/Notes.md
+**/README.md
+**/GEMINI.md
+
 

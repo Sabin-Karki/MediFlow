@@ -7,7 +7,5 @@ import java.util.List;
 
 public interface FieldAliasMappingRepository extends JpaRepository<FieldAliasMapping,Long> {
 
-    static List<FieldAliasMapping> findByEntityType(String entityType) {
-        return List.of();
-    }
+  List<FieldAliasMapping> findByEntityType(String entityType);
 }
